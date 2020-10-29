@@ -59,9 +59,25 @@ public class Fib1 {
 
     }
 
+    // Iterative method. The most efficient
+    private static long fib3(int n){
+
+        //
+        long fib = 0, fib_1 = 0, fib_2 = 1;
+
+        for (int i = 0; i < n; i++) {
+
+            fib = fib_1 + fib_2;
+            fib_1 = fib_2;
+            fib_2 = i;
+        }
+
+        return fib;
+    }
+
     public static void main(String[] args){
 
-        int n = 20; // where n is the element in the Fibonacci sequence being calculated
+        int n = 40; // where n is the element in the Fibonacci sequence being calculated
 
         // Instantiate and starts the stopwatch
         StopWatch sw = new StopWatch();
@@ -80,6 +96,17 @@ public class Fib1 {
 
         // Compute and print the result
         System.out.printf("fib2(%d) -> %d. ", n, fib2(n));
+
+        // Computes and prints processing time
+        sw.stop();
+        System.out.printf("Computed in %s ms\n", sw.getTime());
+
+        // Now processing the same number with fib3
+        sw.reset();
+        sw.start();
+
+        // Compute and print the result
+        System.out.printf("fib3(%d) -> %d. ", n, fib2(n));
 
         // Computes and prints processing time
         sw.stop();
