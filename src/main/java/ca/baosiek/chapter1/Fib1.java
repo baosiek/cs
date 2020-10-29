@@ -48,11 +48,13 @@ public class Fib1 {
      */
     private static long fib2(int n){
 
+        // Recursively computes fib2 of n-1 and n-2 until base case is reached.
+        // This time it will be reached because the memo map was initialized with them.
         if (!memo.containsKey(n)) {
             memo.put(n, fib2(n-1)+fib2(n-2));
         }
 
-        // Recursively computes fib of n-1 and n-2 until base case is reached
+
         return memo.get(n);
 
     }
