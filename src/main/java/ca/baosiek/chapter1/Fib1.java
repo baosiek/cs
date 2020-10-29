@@ -23,7 +23,9 @@ import java.util.Map;
  */
 public class Fib1 {
 
-    static Map<Integer, Long> memo = new HashMap<>();
+    // Starts memo with base case.
+    static Map<Integer, Long> memo = new HashMap<>(
+            Map.of(Integer.valueOf(0),Long.valueOf(0),Integer.valueOf(1),Long.valueOf(1)));
 
 
     /*
@@ -46,31 +48,12 @@ public class Fib1 {
      */
     private static long fib2(int n){
 
-        // base case.
-        // fib1(0) = 0 and fib1(1) = 1. So...
-        if(n < 2){
-            return n;
-        }
-
-        long n1 = 0, n2 = 0;
-
-        if (memo.containsKey(n-1)) {
-            n1 = memo.get(n - 1);
-        } else {
-
-            n1 = fib2(n - 1);
-            memo.put(n-1, n1);
-        }
-
-        if (memo.containsKey(n-2)) {
-            n2 = memo.get(n - 2);
-        } else {
-            n2 = fib2(n - 2);
-            memo.put(n-2, n2);
+        if (!memo.containsKey(n)) {
+            memo.put(n, fib2(n-1)+fib2(n-2));
         }
 
         // Recursively computes fib of n-1 and n-2 until base case is reached
-        return n1 + n2;
+        return memo.get(n);
 
     }
 
